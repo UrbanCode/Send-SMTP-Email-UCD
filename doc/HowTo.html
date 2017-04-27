@@ -1,0 +1,29 @@
+/**
+ * © Copyright IBM Corporation 2014.  
+ * This is licensed under the following license.
+ * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
+ * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. 
+ */
+
+Here is how to use the plugin:
+
+1) Click the "Settings" tab.
+2) Press the "System Settings" hyperlink.
+3) Under "Mail Server Settings", enter correct data for "Mail Server Host", "Mail Server Port", and "Mail Server Sender Address".
+4) If your SMTP server requres additional settings such as SMTP authorization and enabling of STARTTLS, you will have to modify src/send_smtp_email.groovy and run build.xml to regenerate releases/EmailPlugin_v1.zip. You may also have to enter correct values for "Mail Server Username" and "Mail Server Password".
+5) Upload the releases/EmailPlugin_v1.zip file as a plugin into UCD under "Settings" tab -> "Automation Plugins" -> "Load Plugin".
+6) Click the "Processes" tab.
+7) Press the "Create New Process" button.
+8) Give the process a name.
+9) Press the "Save" button.
+10) Under the "Design" tab of the process, locate the "Send Email" step under Utilities -> Misc.
+11) Drag over the "Send Email" step.
+12) Enter values in "Name", "To List", and "Message" then edit any other parameters as needed.
+13) Press the "Save" button.
+14) Drag an arrow from "Start" to "Send Email" and from "Send Email" to "Finish".
+15) Press the "Save" button under Tools.
+16) Press the "Close" button on the dialog box that opens.
+17) Go back to the "Processes" tab. 
+18) Press "Run" on the row of your newly created process.
+19) Select your resource from the drop down menu.
+20) Press the "Submit" button.
