@@ -1,14 +1,3 @@
-<!--
-
-/**
- * © Copyright IBM Corporation 2014.  
- * This is licensed under the following license.
- * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
- * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. 
- */
-
--->
-
 You must download these two files from Oracle in order to compile and use this plug-in:
 activation.jar
 mail.jar
@@ -17,7 +6,7 @@ How to build the plugin from Eclipse client:
 
 1. Load the project into Eclipse as a Java project.
 2. Open build.xml file, and execute it as an Ant Build operation (Run As -> Ant Build).
-3. The built plugin is located at releases/EmailPlugin_v1.zip 
+3. The built plugin is located at releases/EmailPlugin_v1.zip
 
 How to build the plugin from command line:
 

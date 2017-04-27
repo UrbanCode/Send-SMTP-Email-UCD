@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    (c) Copyright IBM Corporation 2011, 2017.
+    This is licensed under the following license.
+    The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<project xmlns="http://www.urbancode.com/schema/cs/project-dependencies/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        name="apiconnect" workflow="build workflow [air]">
+
+  <dependencies conflictStrategy="FAIL">
+
+    <!-- ############################################################ -->
+    <!-- RUNTIME                                                      -->
+    <!-- ############################################################ -->
+
+
+    <!-- ############################################################ -->
+    <!-- BUILD                                                        -->
+    <!-- ############################################################ -->
+
+    <!-- the plugin-build.xml -->
+    <dependency>
+      <ah-project name="air-plugin-build-script" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Dist">
+        <directory>.</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="air-plugin-ant-tasks" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Dist">
+        <directory>lib/build</directory>
+      </delivery>
+    </dependency>
+
+    <!-- gives us the CommandHelper and XTrust groovies -->
+    <dependency>
+      <ah-project name="plugins" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Source">
+        <directory>lib/build/classes</directory>
+      </delivery>
+      <delivery artifact-set="Dist">
+        <directory>lib/build</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Groovy"/>
+      <criteria status="success"/>
+      <delivery artifact-set="lib">
+        <directory>lib/build</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="RPX"/>
+      <criteria status="Success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/build/rpx</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="CHKPII"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/build/chkpii</directory>
+      </delivery>
+    </dependency>
+
+    <!-- ############################################################ -->
+    <!-- TEST                                                         -->
+    <!-- ############################################################ -->
+
+    <dependency>
+      <ah-project name="air-plugin-command" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Library">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="Commons-Xml" workflow="build workflow [master]" />
+      <criteria status="success" />
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+   <dependency>
+      <cs-project name="Jakarta Commons IO" />
+      <criteria stamp="1.4" />
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+        <directory>lib/validate</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="JUnit"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Rhino"/>
+      <criteria stamp="*" />
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Apache-log4j"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="Shell" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="Commons-FileUtils" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="Commons-Util" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Library">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="NativeProcess" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Jars">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Jakarta Commons Lang"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib/test</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Jakarta Commons Codec"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <!-- NATIVE OS SUPPORT -->
+    <dependency>
+        <ah-project name="WinAPI" workflow="build workflow [master]"/>
+        <criteria status="success"/>
+        <delivery artifact-set="Jars">
+            <directory>lib/test</directory>
+        </delivery>
+        <delivery artifact-set="x64 DLLs">
+            <directory>lib/test/native/windows/x64</directory>
+        </delivery>
+        <delivery artifact-set="x86 DLLs">
+            <directory>lib/test/native/windows/x86</directory>
+        </delivery>
+    </dependency>
+
+
+    <dependency>
+      <cs-project name="Jettison" />
+      <criteria status="success" />
+      <delivery artifact-set="Library">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name='securedata' workflow='build workflow [master]' />
+      <criteria status='success' />
+      <delivery artifact-set='Dist'>
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="SandboxedJSRuntime" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Dist">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <cs-project name="Java Mail"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Default">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+
+    <dependency>
+      <ah-project name="uDeployRestClient" workflow="build workflow [master]"/>
+      <criteria status="success"/>
+      <delivery artifact-set="Dist">
+        <directory>lib</directory>
+      </delivery>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,96 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
-
-/**
- * © Copyright IBM Corporation 2014.  
- * This is licensed under the following license.
- * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
- * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. 
- */
-
+  (c) Copyright IBM Corporation 2014, 2017.
+  This is licensed under the following license.
+  The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
+  U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
+<project name="apiconnect" default="all" basedir="."
+    xmlns:codestation="antlib:com.urbancode.codestation2.client">
 
-<project name="emaildeployplugin" default="main" basedir=".">
+    <property environment="env"/>
+    <property file=".build.properties"/>
 
-		<dirname property="com.ibm.rational.raf.deploy.plugin.build.project" file="${ant.file.com.ibm.rational.raf.deploy.plugin}" />
-		<dirname property="workspace" file="${com.ibm.rational.raf.deploy.plugin.build.project}" />
+    <defaultexcludes add="**/.ahs.*"/>
+    <defaultexcludes add="**/*.bom"/>
 
-		<!-- assumes the build.properties is set via the command line ANT invocation -->
-		<property name="build.properties" value="build.properties" />
-		<property file="${workspace}/builder/ant-common/${build.properties}" />
+    <!-- AHP settings -->
+    <property name="ahp.branch" value="air" />
+    <property name="ahp.project.name" value="${ant.project.name}" />
 
-		<!-- bring in common_build_tokens filterset -->
-		<property name="DISPLAY_VERSION" value="3.0.1" />
+    <!-- =================================================== -->
+    <!-- PROJECT STRUCTURE                                   -->
+    <!-- =================================================== -->
 
-		<tstamp>
-			<format property="TODAY_X" pattern="yyMMdd" locale="en" />
-		</tstamp>
+    <property name="lib.dir"           location="lib" />
 
-		<property name="project" value="" />
+    <!-- =================================================== -->
+    <!-- MACROS                                              -->
+    <!-- =================================================== -->
 
-		<property name="deployPluginArchiveName" value="releases/EmailPlugin_v1.zip" />
+    <macrodef name="emptyDir" description="Ensure that the target directory exists and is empty">
+        <attribute name="dir"/>
+        <attribute name="excludes" default=""/>
+        <sequential>
+            <mkdir dir="@{dir}"/>
+            <delete dir="@{dir}" includes="*/**" excludes="@{excludes}" includeemptydirs="true" defaultexcludes="false"/>
+        </sequential>
+    </macrodef>
 
-		<property name="src.dir" value="${basedir}/src" />
-		<property name="build.dir" value="${basedir}/build" />
-		<property name="plugin.dir" value="${basedir}/plugin" />
-		<property name="license.dir" value="${basedir}/license" />
-		<property name="doc.dir" value="${basedir}/doc" />
-		<property name="lib.dir" value="${basedir}/lib" />
-	    <target name="main" depends="clean, copyDependencies, buildZip" />
+    <!-- =================================================== -->
+    <!-- TARGETS                                             -->
+    <!-- =================================================== -->
 
-		<!-- Copy in the dependencies -->
-		<target name="copyDependencies">
+    <target name="dist" depends="resolve" description="Create distribution">
+        <ant antfile="plugin-build.xml" target="dist" inheritall="true"/>
+    </target>
 
-			<!-- inputs (info, upgrade) -->
-			<copy todir="${build.dir}">
-				<fileset dir="${plugin.dir}">
-					<include name="info.xml" />
-					<include name="upgrade.xml" />
-					<include name="plugin.xml" />
-				</fileset>
-				
-				<fileset dir="${src.dir}">					
-				</fileset>
-			</copy>
+    <target name="all" depends="resolve">
+      <ant antfile="plugin-build.xml" target="all" inheritall="true"/>
+    </target>
 
-			<mkdir dir="${build.dir}/license"/>
-			<!-- copy license -->
-			<copy todir="${build.dir}/license">
-				<fileset dir="${license.dir}">
-					<include name="EPL.txt" />
-				</fileset>
-			</copy>
-			
-			<mkdir dir="${build.dir}/lib"/>
-			<!-- copy lib -->
-			<!-- have you gotten the files per the README? -->
-			<copy todir="${build.dir}/lib">
-				<fileset dir="${lib.dir}">
-					<include name="activation.jar" />
-					<include name="mail.jar" />
-					<include name="uDeployRestClient.jar" />
-				</fileset>
-				</copy>
+    <target name="clean" description="Cleans build output">
+      <emptyDir dir="${lib.dir}" excludes="ext/**"/>
+      <ant antfile="plugin-build.xml" target="clean" inheritall="true"/>
+    </target>
 
-			<mkdir dir="${build.dir}/doc"/>
-			<!-- copy doc -->
-			<copy todir="${build.dir}/doc">
-				<fileset dir="${doc.dir}">
-					<include name="HowTo.html" />
-				</fileset>
-			</copy>							
-		</target>
+    <target name="resolve" unless="resolve.no" description="Resolve all dependencies">
+        <mkdir dir="${lib.dir}"/>
+        <codestation:resolve
+                buildLife="${env.AH_BUILD_LIFE_ID}"
+                xmlFile="dependencies.xml"/>
+    </target>
 
-		<!-- Build the actual zip file that gets uploaded to uDeploy -->
-		<target name="buildZip">
-			<zip destfile="${deployPluginArchiveName}" basedir="${build.dir}" update="false"/>
-		</target>
+    <target name="publish" unless="publish.no"
+            description="Build artifacts and publish them to codestation">
+        <codestation:publish project="${ahp.project.name}"
+                           workflow="${ahp.workflow.name}"
+                           publishall="true"/>
+    </target>
 
-		<!-- Clean up the build directory -->
-		<target name="clean">
-			<delete dir="build" />
-			<mkdir dir="build" />
-			<delete file="${deployPluginArchiveName}" />
-		</target>
+    <!-- =================================================== -->
+    <!-- TEST TARGETS                                        -->
+    <!-- =================================================== -->
 
-	</project>
+    <target name="run-tests" depends="resolve" unless="tests.no">
+      <ant antfile="plugin-build.xml" target="run-tests" inheritall="true"/>
+    </target>
 
+    <target name="run-single-test" depends="resolve" unless="tests.no">
+      <ant antfile="plugin-build.xml" target="run-single-test" inheritall="true"/>
+    </target>
+
+</project>

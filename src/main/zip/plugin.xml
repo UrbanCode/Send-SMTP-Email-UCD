@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
- /**
-  * © Copyright IBM Corporation 2014.  
-  * This is licensed under the following license.
-  * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
-  * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. 
-  */
-
+  (c) Copyright IBM Corporation 2014, 2017.
+  This is licensed under the following license.
+  The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
+  U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
 <plugin
         xmlns="http://www.urbancode.com/PluginXMLSchema_v1"
@@ -19,7 +15,7 @@
           The plugin adds new file utilities beyond what is provided in the standard FileUtils plugin.</description>
       <tag>Utilities/Misc</tag>
     </header>
-	
+
 	<!-- ==================================== -->
     <!--        Send an SMTP email            -->
     <!-- ==================================== -->
@@ -54,8 +50,8 @@
       </post-processing>
 
       <command program="${GROOVY_HOME}/bin/groovy">
-	    <arg value="-cp" /> 
-        <arg path="classes:lib/uDeployRestClient.jar:lib/activation.jar:lib/mail.jar" /> 
+	    <arg value="-cp" />
+        <arg path="classes:lib/uDeployRestClient.jar:lib/activation-1.1.1.jar:lib/javamail-1.4.1.jar:lib/securedata.jar:lib/jettison-1.1.jar:lib/commons-codec.jar:lib/CommonsUtil.jar" />
         <arg file="send_smtp_email.groovy" />
         <arg file="${PLUGIN_INPUT_PROPS}"/>
         <arg file="${PLUGIN_OUTPUT_PROPS}"/>

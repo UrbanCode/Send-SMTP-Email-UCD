@@ -1,10 +1,9 @@
 /**
- * © Copyright IBM Corporation 2014.  
+ * (c) Copyright IBM Corporation 2014, 2017.
  * This is licensed under the following license.
  * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
- * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. 
+ * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
-
 import javax.mail.internet.*;
 import javax.mail.*
 import javax.activation.*
@@ -47,7 +46,7 @@ values.keys().each() { key ->
 	}
 	if (key == "deployMailSender") {
 		fromAddress = values.optString(key);
-	}	
+	}
 }
 
 //tokenize out the recipients in case they came in as a list
