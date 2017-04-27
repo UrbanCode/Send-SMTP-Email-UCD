@@ -5,7 +5,7 @@
   The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
   U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<project name="apiconnect" default="all" basedir="."
+<project name="smtp-email" default="all" basedir="."
     xmlns:codestation="antlib:com.urbancode.codestation2.client">
 
     <property environment="env"/>

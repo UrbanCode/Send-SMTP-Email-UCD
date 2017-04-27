@@ -19,7 +19,7 @@
 	<!-- ==================================== -->
     <!--        Send an SMTP email            -->
     <!-- ==================================== -->
-    <step-type name="Send Email">
+    <step-type name="Send SMTP Email">
       <description>Send an SMTP email</description>
       <properties>
         <property name="toList" required="true">
@@ -36,6 +36,44 @@
           <property-ui type="textAreaBox"
                        label="Message"
                        description="The message contents"/>
+        </property>
+        <property name="host">
+          <property-ui type="textBox"
+                       label="SMTP Host"
+                       description="The SMTP Host server (Ex: mail.smtp.host). If left blank, the Mail Server Host property from the
+                          General Settings will be retrieved. Must have General Settings privileges for this capability."/>
+        </property>
+        <property name="port">
+          <property-ui type="textBox"
+                       label="SMTP Port"
+                       description="The SMTP server port (Ex: mail.smtp.port). If left blank, the Mail Server Port property from the
+                          General Settings will be retrieved. Must have General Settings privileges for this capability."/>
+        </property>
+        <property name="secure">
+          <property-ui type="selectBox"
+                       label="SMTP Secure TLS"
+                       description="Select to enable SMTP TLS Security. (Ex: mail.smtp.starttls.enable)
+                          If left blank, the Secure Mail Server Connection property from the
+                          General Settings will be retrieved. Must have General Settings privileges for this capability."/>
+            <value label=''>none</value>
+            <value label='False'>false</value>
+            <value label='True'>true</value>
+        </property>
+        <property name="fromAddress">
+          <property-ui type="textBox"
+                       label="Sender Email Address"
+                       description="THE SMTP Sender Email Address. If left blank, the Mail Server Sender Address property from the
+                          General Settings will be retrieved. Must have General Settings privileges for this capability."/>
+        </property>
+        <property name="username">
+          <property-ui type="textBox"
+                       label="Username"
+                       description="THE SMTP username. The authentication properties will not be pulled from the General Settings."/>
+        </property>
+        <property name="password">
+          <property-ui type="secureBox"
+                       label="Password"
+                       description="THE SMTP password. The authentication properties will not be pulled from the General Settings."/>
         </property>
       </properties>
       <post-processing>

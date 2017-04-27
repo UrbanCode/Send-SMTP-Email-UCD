@@ -76,7 +76,7 @@
   called to execute the targets in the build.xml.
   -->
 
-  <tool-description>@PLUGIN_DESC@</tool-description>
+  <tool-description>#RELEASE_VERSION#</tool-description>
 
   <!--
   **related-info is NOT required**
@@ -109,9 +109,6 @@
     <meta content="" name="description"/>
     <meta content="" name="keywords"/>
   </meta-html>
-
-  <release-version>1.0</release-version>
-
 
   <release-notes>
     <!--
