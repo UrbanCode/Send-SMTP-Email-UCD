@@ -1,15 +1,18 @@
-You must download these two files from Oracle in order to compile and use this plug-in:
-activation.jar
-mail.jar
+# Send SMTP Email plug-in for IBM UrbanCode Deploy
+---
+Note: This is not the plugin distributable! This is the source code.
 
-How to build the plugin from Eclipse client:
+### License
+This plug-in is protected under the [Eclipse Public 1.0 License](http://www.eclipse.org/legal/epl-v10.html)
 
-1. Load the project into Eclipse as a Java project.
-2. Open build.xml file, and execute it as an Ant Build operation (Run As -> Ant Build).
-3. The built plugin is located at releases/EmailPlugin_v1.zip
+### Overview
+This plug-in provides a mechanism to send SMTP emails in your deployment process.
 
-How to build the plugin from command line:
+### Documentation
+All plug-in documentation is updated and maintained on the [IBM UrbanCode Plug-ins microsite](https://developer.ibm.com/urbancode/plugins) and in the `/doc` folder.
 
-1. Navigate to the base folder of the project through the command line.
-2. Make sure that the build.xml file is there, and then execute ANT command.
-3. The built plugin is located at releases/EmailPlugin_v1.zip
+### Community Support
+The Send SMTP Email plug-in is supported by IBM and the UrbanCode Development Community on a best-effort basis. All bug reports and feature requests should be filed in the GitHub Issues tab above. This plug-in can be built locally through a Gradle build.
+
+### Locally Build the Plug-in
+This open source plug-in uses Gradle as its build tool. [Install the latest version of Gradle](https://gradle.org/install) to build the plug-in locally. Build the plug-in by running the `gradle` command in the plug-in's root directory. The plug-in distributable will be placed under the `build/distributions` folder.
