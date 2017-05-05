@@ -1,0 +1,21 @@
+language: groovy
+rvm:
+- 1.8.8
+install:
+- gradle build
+before_script:
+- gradle test
+- export PLUGIN_VERSION=${TRAVIS_COMMIT:0:7}
+script:
+- gradle -PpluginVersion=${PLUGIN_VERSION}
+jdk:
+- oraclejdk8
+- oraclejdk7
+- openjdk7
+- openjdk6
+notifications:
+  slack:
+    secure: DTjJVWPKEe7K9ZT4dJNSTxv/tONuxwE6Xijbyc2VjPiYb1tWOqwGwxosRWp2wcjNcBCjbQLBlZs3V3a3XPOxpzyMbqN3MWjXQ9vPiBC1JqM2go5j4Rpjt0mlkvU2s4IV9DZCKONLuvjdhn+0dWjPF3U6jId2rCdNRNOE7YchoP60yvzLyTYmam9J3nHLQTpq38CZv9HiGy3K6AVzSye/cTiKDaD2hIA/0sOrzK6J4dIM8Ca24XBw/cjshDoFsWEu+W+i00NycrS78Lss0dTK6S/y6irxYwrH0nRzNwr97zlB1X5WkE3oCuhOQwHRd5YrMLU/I1hbEgM0THkqXz2STmXbOljJ0aSRAGJ0ols4kFIR25uPKisFoJoIkLSJWQs4QEuHWNcIHrz4RgFFGccL6n5DdllWOO2MBlQCKOZRvuq6OCWcfupYS/cGbs4x1eOOoYOAVCQBMJKAjfz84i3j3VbroqVFO2OhFEOSmDQWzUIS20qqKZbOcy5I/qre54ZwY5KzKatX0QlY5sI/16Jm5+5gjXAsFWnp4d89qTya5I43NYF0Yw+S+MkBqFVqmk+chbyEll6wzS5G6kcTBnw5wjXXcFAgTwb9LcXKKpLJM66/0c7pID/EyfiBZvlGppX5TFJeLVbxKdG7CCLxn5w7X9RKa6i3dmAeqn6SxrYKQjY=
+    on_success: change
+    on_failure: change
+  email: false
