@@ -9,13 +9,20 @@ before_script:
 script:
 - gradle -PpluginVersion=${PLUGIN_VERSION}
 jdk:
-- oraclejdk8
-- oraclejdk7
-- openjdk7
-- openjdk6
+- oraclejdk9
 notifications:
   slack:
     secure: DTjJVWPKEe7K9ZT4dJNSTxv/tONuxwE6Xijbyc2VjPiYb1tWOqwGwxosRWp2wcjNcBCjbQLBlZs3V3a3XPOxpzyMbqN3MWjXQ9vPiBC1JqM2go5j4Rpjt0mlkvU2s4IV9DZCKONLuvjdhn+0dWjPF3U6jId2rCdNRNOE7YchoP60yvzLyTYmam9J3nHLQTpq38CZv9HiGy3K6AVzSye/cTiKDaD2hIA/0sOrzK6J4dIM8Ca24XBw/cjshDoFsWEu+W+i00NycrS78Lss0dTK6S/y6irxYwrH0nRzNwr97zlB1X5WkE3oCuhOQwHRd5YrMLU/I1hbEgM0THkqXz2STmXbOljJ0aSRAGJ0ols4kFIR25uPKisFoJoIkLSJWQs4QEuHWNcIHrz4RgFFGccL6n5DdllWOO2MBlQCKOZRvuq6OCWcfupYS/cGbs4x1eOOoYOAVCQBMJKAjfz84i3j3VbroqVFO2OhFEOSmDQWzUIS20qqKZbOcy5I/qre54ZwY5KzKatX0QlY5sI/16Jm5+5gjXAsFWnp4d89qTya5I43NYF0Yw+S+MkBqFVqmk+chbyEll6wzS5G6kcTBnw5wjXXcFAgTwb9LcXKKpLJM66/0c7pID/EyfiBZvlGppX5TFJeLVbxKdG7CCLxn5w7X9RKa6i3dmAeqn6SxrYKQjY=
     on_success: change
     on_failure: change
   email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: L85Tm1ZdfImlY0D6MtYAnFiOyt/w//iFz7Y/tpvaNZgcynIsD7Ik4io+jDhIa6NraWjp9KS1NhLVK4IuDBCyaxO7AYVv6HAKTPIrSJiVN+TW4iHvw9NTBsAiqCv1OKxfh3Znh5BziQ2luV/ybFvY9YaHq7Z89B9bbfvGw3H/xfMVqadj+r4iAYx2VSEgn+FbSbgU1ESzgVEzFiu45vEs/cObAyKOUh7zuniPgbgE/QcDlysudyH7tWF/RYY1S+kLg8onWz4sRiJOXwdEhlmzHdOZAgLufvwsxRRtOgY8oCMYebPK6APfuiTkFfaPBwodzcjTCqP4SxZu+lusuRIhpYYr9nSfO6y769EK9ZL+EfeSTZjxreZ1oY0n7uqRJTLx1mzsBVVszpnhMDP6XybbQobP4ZKtNYt5b0hkyTs0R3jTeWg6cjpj0WMsLiHaa0HjDazKftL4HYeCc81CnfmwPdGW4/BSDL07Drl2yzUfCzBX0xKGF0GFpimhCmZpida4YukhLSoehvNL0nd2Hnb4LUQK6Fp3tuBbxiupQhWqtQC1iesSZrPZPixXaXT16QTvmG5FaIMwP8BWpB8hBD84bKFa/aXW49yvzrz1d3RGkgQoGpUAAYxJjzdAh2WMViuyzcDQDE9dEBlojVqaN4NhQt/79MR34uHGN2CGMAYKxdg=
+  file_glob: true
+  file: /*.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: UrbanCode/Send-SMTP-Email-UCD
