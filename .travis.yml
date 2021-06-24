@@ -17,7 +17,7 @@ notifications:
     on_failure: change
   email: false
 script:
-- ls
+- ls /lib
 deploy:
   provider: releases
   api_key:
