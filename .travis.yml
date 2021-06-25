@@ -16,6 +16,8 @@ notifications:
     on_success: change
     on_failure: change
   email: false
+script:
+- ls build/distributions
 deploy:
   provider: releases
   api_key:
