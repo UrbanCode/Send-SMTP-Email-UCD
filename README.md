@@ -1,6 +1,6 @@
 # Send SMTP Email plug-in for IBM UrbanCode Deploy [![Build Status](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD.svg?branch=master)](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD)
 ---
-Note: This is not the plugin distributable! This is the source code.
+Note: This is not the plugin distributable! This is the source code!
 
 ### License
 This plug-in is protected under the [Eclipse Public 1.0 License](http://www.eclipse.org/legal/epl-v10.html)
