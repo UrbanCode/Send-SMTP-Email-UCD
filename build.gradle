@@ -1,9 +1,3 @@
-/**
- * © Copyright IBM Corporation 2017.
- * This is licensed under the following license.
- * The Eclipse Public 1.0 License (http://www.eclipse.org/legal/epl-v10.html)
- * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
- */
 /* The Groovy plugin for Gradle assumes the following layout
  * src/main/java
  * src/main/resources
@@ -33,15 +27,13 @@
  *     }
  * }
  */
-
-def pluginName="smtp-email-open"
+import org.apache.tools.ant.filters.ReplaceTokens
 
 apply plugin: 'groovy'
 
 defaultTasks 'distPlugin'
 
 def buildLocaleDir = 'build/locale'
-def buildUtilDir   = 'build/util'
 
 configurations {
     // Remove the groovy-all jar from runtime dependencies
@@ -50,20 +42,11 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://public.dhe.ibm.com/software/products/UrbanCode/maven2/"
-    }
 }
 
 dependencies {
     // groovy-plugin-utils pulls down groovy-all as a transitive dependency for the 'compile' configuration
-    compile 'com.ibm.urbancode.plugins:groovy-plugin-utils:+'
-    compile 'com.ibm.urbancode.util:i18n-scraper:+'
-    compile 'com.ibm.urbancode.commons:uDeployRestClient:+'
-
-    compile 'javax.mail:mail:1.4.1'
-    compile 'javax.activation:activation:1.1.1'
-
+    compile 'com.ibm.urbancode.plugins:groovy-plugin-utils:1.0'
     // This compiles the i18n-scraper script
     compile localGroovy()
     // compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.6'
@@ -73,90 +56,28 @@ dependencies {
 sourceSets {
     main {
         groovy {
-            srcDirs = ['src/main/groovy', 'src/main/zip', "${buildDir}/util"]
+            srcDirs = ['src/main/groovy', 'src/main/zip', 'src/main/util', 'src/main/python']
         }
     }
-    zip {
-        groovy {
-            srcDirs = ['src/main/zip']
-        }
-    }
-    classes {
-        groovy {
-            srcDirs = ['src/main/groovy', "${buildDir}/util"]
-        }
-    }
-}
-
-compileJava {
-    dependsOn 'extractGPU', 'copyi18n'
-}
-compileGroovy {
-    include "i18n-scraper.groovy"
-    // exclude '*.groovy'
-    // exclude 'com/**'
 }
 
 task copyDeps(type: Copy) {
+    from configurations.runtime
     into 'lib'
-    copy {
-        from configurations.runtime
-        include { target ->
-            return target.file.path.contains("com.ibm.urbancode") ||
-                target.file.path.contains("commons-lang")
-        }
-        into 'lib'
-        rename { fileName ->
-            stripVersion(fileName)
-        }
-    }
-    copy {
-        from configurations.runtime
-        exclude { target ->
-            return target.file.path.contains("com.ibm.urbancode") ||
-                target.file.path.contains("commons-lang")
-        }
-        into 'lib'
-        rename { fileName ->
-            renameMailJar(fileName)
-        }
-    }
-}
-
-task extractGPU(type: Copy) {
-    def zipFile = file('lib/groovy-plugin-utils.jar')
-    def outputDir = file("${buildDir}/util")
-
-    from zipTree(zipFile)
-    into outputDir
-}
-
-task copyi18n(type: Copy) {
-    def i18nFile = file('lib/i18n-scraper.groovy')
-    def outputDir = file("${buildDir}/util")
-
-    from i18nFile
-    into outputDir
 }
 
 task distPlugin(type: Zip, dependsOn: ['compileGroovy', 'gatherI18n']) {
-    from(sourceSets.zip.groovy.srcDirs)
-
+    def releaseVersion = apiVersion + "." + pluginVersion
+    from(sourceSets.main.groovy.srcDirs) {
+        filter(ReplaceTokens, tokens: [API_VERSION: apiVersion, RELEASE_VERSION: releaseVersion])
+    }
     into('lib') {
         from copyDeps
-        exclude 'i18n-scraper.groovy'
-        exclude 'groovy-plugin-utils.jar'
-        exclude 'groovy-all-*.jar'
-        exclude 'gson-*.jar'
     }
     into('locale') {
         from buildLocaleDir
     }
-    into('classes') {
-        from sourceSets.classes.groovy.srcDirs
-        exclude 'META-INF', 'i18n-scraper.groovy'
-    }
-    archiveName = "${pluginName}-dev.zip"
+    archiveName = "${pluginName}-${releaseVersion}.zip"
 }
 
 task gatherI18n(type: JavaExec) {
@@ -169,16 +90,3 @@ task gatherI18n(type: JavaExec) {
 }
 
 task cleanAll(dependsOn: ['clean', 'cleanCopyDeps', 'cleanDistPlugin', 'cleanGatherI18n'])
-
-String stripVersion(String fileNameWithVersion) {
-    String ext = fileNameWithVersion.substring(fileNameWithVersion.lastIndexOf("."),fileNameWithVersion.length())
-    int end = fileNameWithVersion.lastIndexOf("-"); //assumes that: name-version.ext. Will not work with name-version-SNAPSHOT.ext
-    return fileNameWithVersion.substring(0, end) + ext
-}
-
-String renameMailJar(String fileName) {
-    if (fileName.startsWith("mail-")) {
-        return fileName.replace("mail-", "javamail-")
-    }
-    return fileName
-}
