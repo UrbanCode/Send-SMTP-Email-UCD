@@ -87,7 +87,7 @@
   For example: releated-info can be links to pdf documentation, help videos related to plugin setup or the product's
   website.
 
-  excepted values for type include: PDF, WEBSITE, VIDEO
+  excepted values for type include: PDF, WEBSITE, VIDEO.
   -->
 
   <related-info>
