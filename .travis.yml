@@ -3,7 +3,7 @@ language: groovy
 install:
 - gradle build
 jdk:
-- oraclejdk9
+- oraclejdk10
 script:
 - ls build
 deploy:
