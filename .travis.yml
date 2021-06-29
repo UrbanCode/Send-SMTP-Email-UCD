@@ -21,8 +21,6 @@ script:
 - ls
 script:
 - ls build
-script:
-- ls build/distributions
 deploy:
   provider: releases
   api_key:
