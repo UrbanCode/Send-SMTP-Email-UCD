@@ -57,15 +57,15 @@ repositories {
 
 dependencies {
     // groovy-plugin-utils pulls down groovy-all as a transitive dependency for the 'compile' configuration
-    compile 'com.ibm.urbancode.plugins:groovy-plugin-utils:+'
-    compile 'com.ibm.urbancode.util:i18n-scraper:+'
-    compile 'com.ibm.urbancode.commons:uDeployRestClient:+'
+    implementation 'com.ibm.urbancode.plugins:groovy-plugin-utils:+'
+    implementation 'com.ibm.urbancode.util:i18n-scraper:+'
+    implementation 'com.ibm.urbancode.commons:uDeployRestClient:+'
 
-    compile 'javax.mail:mail:1.4.1'
-    compile 'javax.activation:activation:1.1.1'
+    implementation 'javax.mail:mail:1.4.1'
+    implementation 'javax.activation:activation:1.1.1'
 
     // This compiles the i18n-scraper script
-    compile localGroovy()
+    implementation localGroovy()
     // compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.6'
     // testCompile group: 'junit', name: 'junit', version: '4.11'
 }
