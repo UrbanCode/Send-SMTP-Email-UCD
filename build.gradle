@@ -156,14 +156,14 @@ task distPlugin(type: Zip, dependsOn: ['compileGroovy', 'gatherI18n']) {
         from sourceSets.classes.groovy.srcDirs
         exclude 'META-INF', 'i18n-scraper.groovy'
     }
-    archiveName = "${pluginName}-dev.zip"
+    archiveFileName  = "${pluginName}-dev.zip"
 }
 
 task gatherI18n(type: JavaExec) {
     delete buildLocaleDir
     mkdir buildLocaleDir
 
-    main = 'i18n-scraper'
+    mainClass = 'i18n-scraper'
     args 'build/locale/en.properties'
     classpath = sourceSets.main.runtimeClasspath
 }
