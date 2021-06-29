@@ -6,8 +6,10 @@ before_install:
   - export GRADLE_HOME=$PWD/gradle-7.1
   - export PATH=$GRADLE_HOME/bin:$PATH
   - gradle -v
+script:
+- gradle -v
 install:
-- gradle build
+- gradle build --warning-mode all
 jdk:
 - oraclejdk9
 script:
