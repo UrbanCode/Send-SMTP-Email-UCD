@@ -18,5 +18,4 @@
 /releases
 
 plugin-build.xml
-i18n-scraper.groovy
 *.rpxconfig
