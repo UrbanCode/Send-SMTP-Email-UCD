@@ -1,9 +1,15 @@
   
 language: groovy
+before_install:
+  - wget http://services.gradle.org/distributions/gradle-7.1-bin.zip
+  - unzip -qq gradle-7.1-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-7.1
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - gradle -v
 install:
 - gradle build
 jdk:
-- oraclejdk10
+- oraclejdk9
 script:
 - ls build
 deploy:
