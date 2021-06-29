@@ -1,7 +1,5 @@
   
 language: groovy
-rvm:
-- 1.8.8
 install:
 - gradle build
 before_script:
