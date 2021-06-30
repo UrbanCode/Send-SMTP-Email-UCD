@@ -1,6 +1,6 @@
 # Send SMTP Email plug-in for IBM UrbanCode Deploy [![Build Status](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD.svg?branch=master)](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD)
 ---
-Note: This is not the plugin distributable! This is the source code!
+### Note: The plugin distributable can be found under the 'Releases' (https://github.com/UrbanCode/Send-SMTP-Email-UCD/releases)
 
 ### License
 This plug-in is protected under the [Eclipse Public 1.0 License](http://www.eclipse.org/legal/epl-v10.html)
@@ -12,4 +12,4 @@ This plug-in provides a mechanism to send SMTP emails in your deployment process
 All plug-in documentation is updated and maintained on the [IBM UrbanCode Plug-ins microsite](https://developer.ibm.com/urbancode/plugins) and in the `/doc` folder.
 
 ### Community Support
-The Send SMTP Email plug-in is supported by IBM and the UrbanCode Development Community on a best-effort basis. All bug reports and feature requests should be filed in the GitHub Issues tab above. This plug-in can be built locally through a Gradle build.
+The Send SMTP Email plug-in is supported by IBM and the UrbanCode Development Community on a best-effort basis. All bug reports and feature requests should be filed in the GitHub Issues tab above.
