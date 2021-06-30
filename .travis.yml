@@ -8,7 +8,7 @@ before_install:
 script:
 - gradle -v
 install:
-- gradle build
+- - gradle distPlugin
 jdk:
 - oraclejdk9
 script:
