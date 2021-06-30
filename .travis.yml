@@ -5,11 +5,10 @@ before_install:
   - unzip -qq gradle-7.1-bin.zip
   - export GRADLE_HOME=$PWD/gradle-7.1
   - export PATH=$GRADLE_HOME/bin:$PATH
-  - gradle -v
 script:
 - gradle -v
 install:
-- gradle build --warning-mode all
+- gradle build
 jdk:
 - oraclejdk9
 script:
