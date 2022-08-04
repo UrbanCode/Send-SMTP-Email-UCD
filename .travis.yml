@@ -22,4 +22,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: UrbanCode/Send-SMTP-Email-UCD
+    repo: Amiya-873/Send-SMTP-Email-UCD
