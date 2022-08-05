@@ -10,7 +10,7 @@ script:
 install:
 - - gradle distPlugin --warning-mode all
 jdk:
-- oraclejdk9
+- oraclejdk11
 script:
 - ls build
 deploy:
@@ -22,5 +22,5 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: Urbancode/Send-SMTP-Email-UCD
+    repo: UrbanCode/Send-SMTP-Email-UCD
     
