@@ -138,6 +138,9 @@
 	<release-note plugin-version="1">
 	  Miscellaneous plugins.
 	</release-note>
+	<release-note plugin-version="2">
+	  updated dependency groovy-plugin-utils.jar
+	</release-note>
 
   </release-notes>
 </pluginInfo>

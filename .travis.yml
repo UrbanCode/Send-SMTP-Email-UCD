@@ -10,7 +10,7 @@ script:
 install:
 - - gradle distPlugin
 jdk:
-- oraclejdk9
+- oraclejdk11
 script:
 - ls build
 deploy:
@@ -23,3 +23,4 @@ deploy:
   on:
     tags: true
     repo: UrbanCode/Send-SMTP-Email-UCD
+    
