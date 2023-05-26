@@ -37,6 +37,11 @@
                        label="Message"
                        description="The message contents"/>
         </property>
+        <property name="attachment" required="false">
+          <property-ui type="textAreaBox"
+                       label="Attachment"
+                       description="The attachment (with full path) to send with the mail. Ex - /home/manisha/file.txt."/>
+        </property>
         <property name="host">
           <property-ui type="textBox"
                        label="SMTP Host"
