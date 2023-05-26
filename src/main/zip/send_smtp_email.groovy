@@ -25,6 +25,8 @@ def props = apTool.getStepProperties();
 def toAddress = props['toList'];
 def subject = props['subject'];
 def message = props['message'];
+def attachment = props['attachment'];
+
 
 // define the properties we will get from the system configuration
 def host = props['host'].trim();
@@ -102,7 +104,29 @@ try {
     msg.setRecipients(MimeMessage.RecipientType.TO,to);
     msg.setFrom(new InternetAddress(fromAddress));
     msg.setSubject(subject);
-    msg.setText(message)
+    // msg.setText(message)
+
+    BodyPart messageBodyPart = new MimeBodyPart();
+    
+    // Now set the actual message
+    messageBodyPart.setText(message)
+    
+    // Set text message part
+    Multipart multipart = new MimeMultipart();
+    multipart.addBodyPart(messageBodyPart);
+
+    // Part two is att((achment
+    if(attachment.trim() != '') {
+        messageBodyPart = new MimeBodyPart();
+        String filename = attachment;
+        DataSource source = new FileDataSource(filename);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(filename);
+        multipart.addBodyPart(messageBodyPart);
+    }
+    
+    // Send the complete message parts
+    msg.setContent(multipart);
 
     // send the message
     Transport.send(msg);
