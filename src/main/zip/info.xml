@@ -141,7 +141,7 @@
 	<release-note plugin-version="2">
 	  updated dependency groovy-plugin-utils.jar
 	</release-note>
-	<release-note plugin-version="2">
+	<release-note plugin-version="3">
 	  Added sending attachment support in an email to the plugin.
 	</release-note>
 
