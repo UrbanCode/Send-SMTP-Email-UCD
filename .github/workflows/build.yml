@@ -40,8 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
-          tag_name: v7.0  # specify the tag name for the release
-          release_name: Release 7.0  # specify the release name
+          tag_name: v3.0  # specify the tag name for the release
+          release_name: Release 3.0  # specify the release name
           body: |
             Release notes for this version.
           draft: false
