@@ -1,0 +1,57 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - master  # or the branch you want to trigger the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Build with Gradle Wrapper
+        run: ./gradlew distPlugin
+
+      # Add steps to publish your plugin, e.g., publishing to a Maven repository
+      # Replace these with the actual steps required for your project
+      - name: Publish Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        with:
+          tag_name: v7.0  # specify the tag name for the release
+          release_name: Release 7.0  # specify the release name
+          body: |
+            Release notes for this version.
+          draft: false
+          prerelease: false
+
+      # Optional: Upload artifact as part of the release
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/distributions/smtp-email-open-3.zip  # specify the path to your artifact
+          asset_name: smtp-email-open-3.zip
+          asset_content_type: application/zip
