@@ -10,7 +10,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <header>
-      <identifier id="com.urbancode.air.plugin.SendEmail" version="2" name="Send Email"/>
+      <identifier id="com.urbancode.air.plugin.SendEmail" version="3" name="Send Email"/>
       <description>
           The plugin adds new file utilities beyond what is provided in the standard FileUtils plugin.</description>
       <tag>Utilities/Misc</tag>
@@ -36,6 +36,11 @@
           <property-ui type="textAreaBox"
                        label="Message"
                        description="The message contents"/>
+        </property>
+        <property name="attachment" required="false">
+          <property-ui type="textAreaBox"
+                       label="Attachment"
+                       description="The attachment (with full path) to send with the mail. Ex - /home/manisha/file.txt."/>
         </property>
         <property name="host">
           <property-ui type="textBox"
