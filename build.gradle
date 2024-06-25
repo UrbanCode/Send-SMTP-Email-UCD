@@ -156,7 +156,7 @@ task distPlugin(type: Zip, dependsOn: ['compileGroovy', 'gatherI18n']) {
         from sourceSets.classes.groovy.srcDirs
         exclude 'META-INF', 'i18n-scraper.groovy'
     }
-    archiveFileName  = "${pluginName}-dev.zip"
+    archiveFileName  = "${pluginName}-3.zip"
 }
 
 task gatherI18n(type: JavaExec) {
