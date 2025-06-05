@@ -10,7 +10,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <header>
-      <identifier id="com.urbancode.air.plugin.SendEmail" version="3" name="Send Email"/>
+      <identifier id="com.urbancode.air.plugin.SendEmailPublic" version="3" name="Send Email"/>
       <description>
           The plugin adds new file utilities beyond what is provided in the standard FileUtils plugin.</description>
       <tag>Utilities/Misc</tag>
