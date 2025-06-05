@@ -1,7 +1,8 @@
+> ⚠️ **Important:** The codebase of the plugin has been moved to HCL's enterprise GitHub. Further enhancements and bug fixes will be made there. However, community members are still free to use this repository if they wish to work on the plugin.
+
 # Send SMTP Email plug-in for IBM UrbanCode Deploy [![Build Status](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD.svg?branch=master)](https://travis-ci.org/IBM-UrbanCode/Send-SMTP-Email-UCD)
 ---
 
-### Important Note: The Codebase of the plugin has been moved into the HCL's enterprise GitHub (https://github01.hclpnp.com/).Further enhancements and bugfixes will be done there. However, if somebody from the community still want to work on this plugin, then thay are free to use this repository.
 
 ### Note: The plugin distributable can be found under the 'Releases' (https://github.com/UrbanCode/Send-SMTP-Email-UCD/releases)
 
