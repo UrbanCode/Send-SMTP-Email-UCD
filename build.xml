@@ -7,7 +7,9 @@
 -->
 <project name="smtp-email" default="all" basedir="."
     xmlns:codestation="antlib:com.urbancode.codestation2.client">
-
+    <echo message="The codebase of the plugin has been moved to HCL's enterprise GitHub. 
+      Further enhancements and bug fixes will be made there. 
+      However, community members are still free to use this repository if they wish to work on the plugin." />
     <property environment="env"/>
     <property file=".build.properties"/>
 
