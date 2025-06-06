@@ -142,10 +142,17 @@ task copyi18n(type: Copy) {
 task distPlugin(type: Zip, dependsOn: ['compileGroovy', 'gatherI18n']) {
 
     doFirst {
-        println """!!!The codebase of the plugin has been moved to HCL's enterprise GitHub.
+    println """!!! The codebase of the plugin has been moved to HCL's enterprise GitHub.
         Further enhancements and bug fixes will be made there.
-        However, community members are still free to use this repository if they wish to work on the plugin."""
+        However, community members are still free to use this repository if they wish to work on the plugin.
+        
+        We recommend using the Java ported plugin available at:
+        https://hcl-software.com/plugins/send-smtp-email
+        
+        Please create an RFE if you find any feature missing.
+        """
     }
+
 
     from(sourceSets.zip.groovy.srcDirs)
 
