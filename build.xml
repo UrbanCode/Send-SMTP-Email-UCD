@@ -9,7 +9,7 @@
     xmlns:codestation="antlib:com.urbancode.codestation2.client">
     <echo message="!!!The codebase of the plugin has been moved to HCL's enterprise GitHub. 
       Further enhancements and bug fixes will be made there. 
-      We recommend using the Java ported plugin available at: https://hcl-software.com/plugins/send-smtp-email
+      We recommend using the Java ported plugin available at: https://urbancode.github.io/IBM-UCx-PLUGIN-DOCS/UCD/send-smtp-email/
       Please create an RFE if you find any feature missing." />
   
     <property environment="env"/>

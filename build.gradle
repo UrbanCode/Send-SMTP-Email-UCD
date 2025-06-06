@@ -147,7 +147,7 @@ task distPlugin(type: Zip, dependsOn: ['compileGroovy', 'gatherI18n']) {
         However, community members are still free to use this repository if they wish to work on the plugin.
         
         We recommend using the Java ported plugin available at:
-        https://hcl-software.com/plugins/send-smtp-email
+        https://urbancode.github.io/IBM-UCx-PLUGIN-DOCS/UCD/send-smtp-email/
         
         Please create an RFE if you find any feature missing.
         """
